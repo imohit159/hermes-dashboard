@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { MarkdownPreview } from "@/components/markdown-preview";
+import { ChatView } from "@/components/chat-view";
 
 const tabs = ["Today", "Chat", "Preview", "Tasks"] as const;
 type Tab = (typeof tabs)[number];
@@ -75,48 +77,11 @@ function TodayView() {
   );
 }
 
-function ChatView() {
-  return (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 flex items-center justify-center text-muted-foreground">
-        <div className="text-center">
-          <p className="text-lg font-medium">Chat interface</p>
-          <p className="text-sm">Connect to Hermes backend to start chatting</p>
-        </div>
-      </div>
-      <div className="border-t border-border p-4">
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Type a message..."
-            className="flex-1 px-4 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          />
-          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium">
-            Send
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function PreviewView() {
   return (
     <div className="h-full flex flex-col">
-      <div className="flex-1 grid grid-cols-2 gap-4">
-        <div className="border border-border rounded-md p-4">
-          <p className="text-xs text-muted-foreground mb-2">Editor (Markdown)</p>
-          <textarea
-            className="w-full h-full resize-none bg-transparent text-sm font-mono focus:outline-none"
-            placeholder="Write markdown here..."
-          />
-        </div>
-        <div className="border border-border rounded-md p-4">
-          <p className="text-xs text-muted-foreground mb-2">Preview</p>
-          <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
-            <p className="text-muted-foreground">Preview will appear here</p>
-          </div>
-        </div>
+      <div className="flex-1 min-h-0">
+        <MarkdownPreview initial="# Welcome to Hermes Dashboard\n\nWrite markdown here and see it rendered in real-time." />
       </div>
     </div>
   );

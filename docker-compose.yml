@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  dashboard:
+    build: .
+    container_name: hermes-dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - HERMES_URL=http://host.docker.internal:9119
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
